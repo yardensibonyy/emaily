@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
 const keys = require('./config/keys');
-require('./models/User'); //the order of User and passport very important
+require('./models/User'); //the order of User and passport is important
 require('./models/Survey');
 require('./services/passport');
 
@@ -21,9 +21,6 @@ app.use(cookieSession({
 app.use(passport.initialize());
 app.use(passport.session());
 
-//At first, the Express app will try to find the route here (back-end)
-//If the route won't found - Express will call index.html and will try to find the route in the front end
-//Setup route handlers
 require('./routes/authRoutes')(app); 
 require('./routes/billingRoutes')(app);
 require('./routes/surveyRoutes')(app);
